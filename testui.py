@@ -11,65 +11,65 @@ import sounddevice as sd
 import speech_recognition as sr
 import difflib
 
-# def voice_code(file_name):
+def voice_code(file_name):
 
-#     def recognize_speech_from_mic(recognizer, microphone):
-#         """Transcribe speech from recorded from `microphone`."""
-#         with microphone as source:
-#             recognizer.adjust_for_ambient_noise(source)
-#             audio = recognizer.listen(source)
+    def recognize_speech_from_mic(recognizer, microphone):
+        """Transcribe speech from recorded from `microphone`."""
+        with microphone as source:
+            recognizer.adjust_for_ambient_noise(source)
+            audio = recognizer.listen(source)
 
-#         try:
-#             # Recognize speech using Google Web Speech API
-#             transcription = recognizer.recognize_google(audio)
-#         except sr.RequestError:
-#             # API was unreachable or unresponsive
-#             return "API unavailable"
-#         except sr.UnknownValueError:
-#             # speech was unintelligible
-#             return "Unable to recognize speech"
+        try:
+            # Recognize speech using Google Web Speech API
+            transcription = recognizer.recognize_google(audio)
+        except sr.RequestError:
+            # API was unreachable or unresponsive
+            return "API unavailable"
+        except sr.UnknownValueError:
+            # speech was unintelligible
+            return "Unable to recognize speech"
 
-#         return transcription
+        return transcription
 
-#     def compare_texts(recognized_text, file_text):
-#         """Compare two texts and return similarity ratio."""
-#         return difflib.SequenceMatcher(None, recognized_text, file_text).ratio()
+    def compare_texts(recognized_text, file_text):
+        """Compare two texts and return similarity ratio."""
+        return difflib.SequenceMatcher(None, recognized_text, file_text).ratio()
 
-#     # Main execution
+    # Main execution
 
-#     # Set up the recognizer and microphone objects
-#     script_directory = os.path.dirname(os.path.abspath(__file__))
+    # Set up the recognizer and microphone objects
+    script_directory = os.path.dirname(os.path.abspath(__file__))
 
-#     # List all files in this directory
-#     files = os.listdir(script_directory)
-#     success=0
-#     file_name=file_name+".txt"
-#     # Print the files
-#     for file in files:
-#         if file==file_name:
-#             success=1
-#     file_name=script_directory+"/"+file_name
+    # List all files in this directory
+    files = os.listdir(script_directory)
+    success=0
+    file_name=file_name+".txt"
+    # Print the files
+    for file in files:
+        if file==file_name:
+            success=1
+    file_name=script_directory+"/"+file_name
 
-#     recognizer = sr.Recognizer()
-#     microphone = sr.Microphone()
+    recognizer = sr.Recognizer()
+    microphone = sr.Microphone()
 
-#     # Recognize speech
-#     recognized_text = recognize_speech_from_mic(recognizer, microphone)
-#     print(f"Recognized Speech: {recognized_text}")
+    # Recognize speech
+    recognized_text = recognize_speech_from_mic(recognizer, microphone)
+    print(f"Recognized Speech: {recognized_text}")
 
-#     # Read the text file content
-#     with open(file_name, "r") as file:
-#         file_text = file.read().strip()
+    # Read the text file content
+    with open(file_name, "r") as file:
+        file_text = file.read().strip()
 
-#     # Compare the recognized text with the file text
-#     similarity = compare_texts(recognized_text, file_text)
-#     print(f"Text similarity: {similarity:.2%}")
+    # Compare the recognized text with the file text
+    similarity = compare_texts(recognized_text, file_text)
+    print(f"Text similarity: {similarity:.2%}")
 
 
-#     if similarity>0.7:
-#         show_success_window()
-#     else:
-#         show_failure_window()
+    if similarity>0.7:
+        show_success_window()
+    else:
+        show_failure_window()
 
 
 
